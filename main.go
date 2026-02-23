@@ -75,6 +75,6 @@ func main() {
 	// index := 2
 	// arr = append(arr[:index], append([]int{99}, arr[index:]...)...)
 	arr = arr[1:]
+	arr = arr[:len(arr)-1]
 	fmt.Println(arr)
-
 }
