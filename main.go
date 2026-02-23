@@ -71,8 +71,9 @@ import "fmt"
 
 func main() {
 
-	arr := make([]int, 3, 4)
+	arr := []int{1, 2, 3, 4, 5, 6, 7}
+	index := 2
+	arr = append(arr[index:], arr[index+1:]...)
 	fmt.Println(arr)
-	arr = append(arr, 4)
-	fmt.Println(arr)
+
 }
