@@ -70,12 +70,9 @@ package main
 import "fmt"
 
 func main() {
-	str := []string{"Hashin", "nabeel", "shabin"}
 
-	m1 := make(map[string]int)
-
-	for i, value := range str {
-		m1[value] = i
-	}
-	fmt.Println(m1)
+	arr := make([]int, 3, 4)
+	fmt.Println(arr)
+	arr = append(arr, 4)
+	fmt.Println(arr)
 }
