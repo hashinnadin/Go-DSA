@@ -157,22 +157,45 @@
 // 	fmt.Println(arr)
 // }
 
+// package main
+
+// import "fmt"
+
+// func main() {
+
+// 	arr := []int{1, 2, 3, 4, 5}
+
+// 	low := 0
+// 	hiegh := len(arr) - 1
+
+// 	for low < hiegh {
+
+// 		arr[low], arr[hiegh] = arr[hiegh], arr[low]
+// 		low++
+// 		hiegh--
+// 	}
+// 	fmt.Println(arr)
+// }
+
 package main
 
 import "fmt"
 
 func main() {
-
-	arr := []int{1, 2, 3, 4, 5}
-
-	low := 0
-	hiegh := len(arr) - 1
-
-	for low < hiegh {
-
-		arr[low], arr[hiegh] = arr[hiegh], arr[low]
-		low++
-		hiegh--
+	type Node struct {
+		data int
+		next *Node
 	}
-	fmt.Println(arr)
+
+	node1 := Node{data: 10}
+	node2 := Node{data: 20}
+
+	node1.next = &node2
+
+	current := &node1
+
+	for current != nil {
+		fmt.Println(current.data)
+		current = current.next
+	}
 }
