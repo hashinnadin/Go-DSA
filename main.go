@@ -125,22 +125,34 @@
 // 	fmt.Println(BinarySearch(arr, targer))
 // }
 
+// package main
+
+// import "fmt"
+
+// func ReverseArray(arr []int) {
+// 	left := 0
+// 	rieght := len(arr) - 1
+
+// 	for left < rieght {
+// 		arr[left], arr[rieght] = arr[rieght], arr[left]
+// 		left++
+// 		rieght--
+// 	}
+// }
+// func main() {
+// 	arr := []int{1, 2, 3, 4, 5, 6, 7}
+// 	ReverseArray(arr)
+// 	fmt.Println(arr)
+// }
+
 package main
 
 import "fmt"
 
-func ReverseArray(arr []int) {
-	left := 0
-	rieght := len(arr) - 1
-
-	for left < rieght {
-		arr[left], arr[rieght] = arr[rieght], arr[left]
-		left++
-		rieght--
-	}
-}
 func main() {
-	arr := []int{1, 2, 3, 4, 5, 6, 7}
-	ReverseArray(arr)
+	arr := []int{1, 2, 3, 4, 5}
+	index := 1
+	arr = append(arr[:index], append([]int{99}, arr[index:]...)...)
+	// arr = append(arr[:2], arr[3:]...)
 	fmt.Println(arr)
 }
