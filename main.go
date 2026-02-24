@@ -97,30 +97,50 @@
 // 	fmt.Println(p1)
 //
 
+// package main
+
+// import "fmt"
+
+// func BinarySearch(arr []int, target int) int {
+// 	low := 0
+// 	hiegh := len(arr) - 1
+
+// 	for low <= hiegh {
+// 		mid := (low + hiegh) / 2
+
+// 		if arr[mid] == target {
+// 			return mid
+// 		} else if arr[mid] < target {
+// 			low = mid + 1
+// 		} else {
+// 			hiegh = mid - 1
+// 		}
+// 	}
+// 	return -1
+// }
+
+// func main() {
+// 	arr := []int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140}
+// 	targer := 30
+// 	fmt.Println(BinarySearch(arr, targer))
+// }
+
 package main
 
 import "fmt"
 
-func BinarySearch(arr []int, target int) int {
-	low := 0
-	hiegh := len(arr) - 1
+func ReverseArray(arr []int) {
+	left := 0
+	rieght := len(arr) - 1
 
-	for low <= hiegh {
-		mid := (low + hiegh) / 2
-
-		if arr[mid] == target {
-			return mid
-		} else if arr[mid] < target {
-			low = mid + 1
-		} else {
-			hiegh = mid - 1
-		}
+	for left < rieght {
+		arr[left], arr[rieght] = arr[rieght], arr[left]
+		left++
+		rieght--
 	}
-	return -1
 }
-
 func main() {
-	arr := []int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140}
-	targer := 30
-	fmt.Println(BinarySearch(arr, targer))
+	arr := []int{1, 2, 3, 4, 5, 6, 7}
+	ReverseArray(arr)
+	fmt.Println(arr)
 }
