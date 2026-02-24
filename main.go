@@ -65,16 +65,62 @@
 // 	fmt.Println(arr)
 // }
 
+// package main
+
+// import "fmt"
+
+// func main() {
+
+// 	arr := []int{1, 2, 3, 4, 5, 6, 7}
+// 	// index := 2
+// 	// arr = append(arr[:index], append([]int{99}, arr[index:]...)...)
+// 	arr = arr[1:]
+// 	arr = arr[:len(arr)-1]
+// 	fmt.Println(arr)
+// }
+
+// package main
+
+// import "fmt"
+
+// func LinearSearch(arr []int, target int) int {
+// 	for i := 0; i < len(arr); i++ {
+// 		if arr[i] == target {
+// 			return i
+// 		}
+// 	}
+// 	return -1
+// }
+// n
+// func main() {
+// 	p1 := LinearSearch([]int{1, 2, 3, 4, 5}, int(7))
+// 	fmt.Println(p1)
+//
+
 package main
 
 import "fmt"
 
-func main() {
+func BinarySearch(arr []int, target int) int {
+	low := 0
+	hiegh := len(arr) - 1
 
-	arr := []int{1, 2, 3, 4, 5, 6, 7}
-	// index := 2
-	// arr = append(arr[:index], append([]int{99}, arr[index:]...)...)
-	arr = arr[1:]
-	arr = arr[:len(arr)-1]
-	fmt.Println(arr)
+	for low <= hiegh {
+		mid := (low + hiegh) / 2
+
+		if arr[mid] == target {
+			return mid
+		} else if arr[mid] < target {
+			low = mid + 1
+		} else {
+			hiegh = mid - 1
+		}
+	}
+	return -1
+}
+
+func main() {
+	arr := []int{10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140}
+	targer := 30
+	fmt.Println(BinarySearch(arr, targer))
 }
