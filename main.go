@@ -145,14 +145,34 @@
 // 	fmt.Println(arr)
 // }
 
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	arr := []int{1, 2, 3, 4, 5}
+// 	index := 1
+// 	arr = append(arr[:index], append([]int{99}, arr[index:]...)...)
+// 	// arr = append(arr[:2], arr[3:]...)
+// 	fmt.Println(arr)
+// }
+
 package main
 
 import "fmt"
 
 func main() {
+
 	arr := []int{1, 2, 3, 4, 5}
-	index := 1
-	arr = append(arr[:index], append([]int{99}, arr[index:]...)...)
-	// arr = append(arr[:2], arr[3:]...)
+
+	low := 0
+	hiegh := len(arr) - 1
+
+	for low < hiegh {
+
+		arr[low], arr[hiegh] = arr[hiegh], arr[low]
+		low++
+		hiegh--
+	}
 	fmt.Println(arr)
 }
