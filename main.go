@@ -189,8 +189,10 @@ func main() {
 
 	node1 := Node{data: 10}
 	node2 := Node{data: 20}
+	node3 := Node{data: 30}
 
 	node1.next = &node2
+	node2.next = &node3
 
 	current := &node1
 
