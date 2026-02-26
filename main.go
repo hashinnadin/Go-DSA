@@ -187,17 +187,28 @@ func main() {
 		next *Node
 	}
 
-	node1 := Node{data: 10}
-	node2 := Node{data: 20}
-	node3 := Node{data: 30}
+	node1 := &Node{data: 10}
+	node2 := &Node{data: 20}
+	node3 := &Node{data: 30}
 
-	node1.next = &node2
-	node2.next = &node3
+	node1.next = node2
+	node2.next = node3
 
-	current := &node1
+	head := node1
+
+	current := head
 
 	for current != nil {
 		fmt.Println(current.data)
 		current = current.next
 	}
+	if head != nil {
+		head = head.next
+	}
+	current = head
+	for current != nil {
+		fmt.Println(current.data)
+		current = current.next
+	}
+
 }
