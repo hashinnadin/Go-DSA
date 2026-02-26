@@ -233,12 +233,9 @@ func printList(head *Node) {
 	fmt.Println("nil")
 }
 
-// Insert at Position
 func insertAtPosition(head *Node, value int, pos int) *Node {
+	newNode := &Node{data: 99}
 
-	newNode := &Node{data: value}
-
-	// Insert at head
 	if pos == 0 {
 		newNode.next = head
 		return newNode
@@ -246,17 +243,30 @@ func insertAtPosition(head *Node, value int, pos int) *Node {
 
 	current := head
 
-	// Move to position-1
 	for i := 0; current != nil && i < pos-1; i++ {
 		current = current.next
 	}
-
 	if current != nil {
-
 		newNode.next = current.next
 		current.next = newNode
 
 	}
+	return head
+}
+
+func insertAtend(head *Node, value int) *Node {
+	newNode := &Node{data: value}
+
+	if head == nil {
+		return newNode
+	}
+
+	current := head
+
+	for current.next != nil {
+		current = current.next
+	}
+	current.next = newNode
 	return head
 }
 
@@ -278,6 +288,7 @@ func deleteByValue(head *Node, value int) *Node {
 		if current.next.data == value {
 			current.next = current.next.next
 			break
+
 		}
 		current = current.next
 	}
@@ -287,15 +298,16 @@ func deleteByValue(head *Node, value int) *Node {
 
 func main() {
 
-	// Create initial list: 5 → 10 → 15 → 20
 	node1 := &Node{data: 5}
 	node2 := &Node{data: 10}
 	node3 := &Node{data: 15}
 	node4 := &Node{data: 20}
+	node5 := &Node{data: 10}
 
 	node1.next = node2
 	node2.next = node3
 	node3.next = node4
+	node4.next = node5
 
 	head := node1
 
@@ -311,6 +323,7 @@ func main() {
 	// Delete value 10
 	head = deleteByValue(head, 10)
 
+	head = insertAtend(head, 100)
 	fmt.Println("After Delete value 10:")
 	printList(head)
 }
