@@ -177,6 +177,43 @@
 // 	fmt.Println(arr)
 // }
 
+// package main
+
+// import "fmt"
+
+// type Node struct {
+// 	data int
+// 	next *Node
+// }
+
+// func printList(head *Node) {
+// 	current := head
+// 	for current != nil {
+// 		fmt.Println(current.data)
+// 		current = current.next
+// 	}
+
+// }
+
+// func main() {
+
+// 	node1 := &Node{data: 10}
+// 	node2 := &Node{data: 20}
+// 	node3 := &Node{data: 30}
+
+// 	node1.next = node2
+// 	node2.next = node3
+
+// 	head := node1
+
+//  // insert HEAD
+// 	newNode := &Node{data: 5}
+// 	newNode.next = head
+// 	head = newNode
+
+// 	printList(head)
+
+// }
 package main
 
 import "fmt"
@@ -186,31 +223,94 @@ type Node struct {
 	next *Node
 }
 
+// Print List
 func printList(head *Node) {
 	current := head
 	for current != nil {
-		fmt.Println(current.data)
+		fmt.Print(current.data, " → ")
+		current = current.next
+	}
+	fmt.Println("nil")
+}
+
+// Insert at Position
+func insertAtPosition(head *Node, value int, pos int) *Node {
+
+	newNode := &Node{data: value}
+
+	// Insert at head
+	if pos == 0 {
+		newNode.next = head
+		return newNode
+	}
+
+	current := head
+
+	// Move to position-1
+	for i := 0; current != nil && i < pos-1; i++ {
 		current = current.next
 	}
 
+	if current != nil {
+
+		newNode.next = current.next
+		current.next = newNode
+
+	}
+	return head
+}
+
+// Delete by Value
+func deleteByValue(head *Node, value int) *Node {
+
+	if head == nil {
+		return nil
+	}
+
+	// If head must be deleted
+	if head.data == value {
+		return head.next
+	}
+
+	current := head
+
+	for current.next != nil {
+		if current.next.data == value {
+			current.next = current.next.next
+			break
+		}
+		current = current.next
+	}
+
+	return head
 }
 
 func main() {
 
-	node1 := &Node{data: 10}
-	node2 := &Node{data: 20}
-	node3 := &Node{data: 30}
+	// Create initial list: 5 → 10 → 15 → 20
+	node1 := &Node{data: 5}
+	node2 := &Node{data: 10}
+	node3 := &Node{data: 15}
+	node4 := &Node{data: 20}
 
 	node1.next = node2
 	node2.next = node3
+	node3.next = node4
 
 	head := node1
 
+	fmt.Println("Original List:")
 	printList(head)
 
-	if head != nil {
-		head = head.next
+	// Insert 100 at position 2
+	head = insertAtPosition(head, 100, 2)
 
-	}
+	fmt.Println("After Insert 100 at position 2:")
+	printList(head)
 
+	// Delete value 10
+	head = deleteByValue(head, 10)
+
+	fmt.Println("After Delete value 10:")
+	printList(head)
 }
