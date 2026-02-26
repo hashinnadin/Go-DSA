@@ -181,6 +181,10 @@ package main
 
 import "fmt"
 
+func printList(head int) {
+
+}
+
 func main() {
 	type Node struct {
 		data int
@@ -191,10 +195,15 @@ func main() {
 	node2 := &Node{data: 20}
 	node3 := &Node{data: 30}
 
+	newwNode := &Node{data: 5}
+	node4 := &Node{data: 40}
+
 	node1.next = node2
 	node2.next = node3
 
 	head := node1
+	newwNode.next = head
+	head = newwNode
 
 	current := head
 
@@ -202,6 +211,7 @@ func main() {
 		fmt.Println(current.data)
 		current = current.next
 	}
+
 	if head != nil {
 		head = head.next
 	}
@@ -210,5 +220,6 @@ func main() {
 		fmt.Println(current.data)
 		current = current.next
 	}
+	current = node4
 
 }
