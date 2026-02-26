@@ -181,45 +181,36 @@ package main
 
 import "fmt"
 
-func printList(head int) {
+type Node struct {
+	data int
+	next *Node
+}
+
+func printList(head *Node) {
+	current := head
+	for current != nil {
+		fmt.Println(current.data)
+		current = current.next
+	}
 
 }
 
 func main() {
-	type Node struct {
-		data int
-		next *Node
-	}
 
 	node1 := &Node{data: 10}
 	node2 := &Node{data: 20}
 	node3 := &Node{data: 30}
 
-	newwNode := &Node{data: 5}
-	node4 := &Node{data: 40}
-
 	node1.next = node2
 	node2.next = node3
 
 	head := node1
-	newwNode.next = head
-	head = newwNode
 
-	current := head
-
-	for current != nil {
-		fmt.Println(current.data)
-		current = current.next
-	}
+	printList(head)
 
 	if head != nil {
 		head = head.next
+
 	}
-	current = head
-	for current != nil {
-		fmt.Println(current.data)
-		current = current.next
-	}
-	current = node4
 
 }
