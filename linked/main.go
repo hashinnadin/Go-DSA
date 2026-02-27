@@ -23,7 +23,30 @@ func insert(head *Node, value int) *Node {
 }
 
 func delete(head *Node) *Node {
-	head = head.next
+	if head != nil {
+		head = head.next
+	}
+	return head
+}
+
+func deleteByValue(head *Node, value int) *Node {
+
+	if head == nil {
+		return nil
+	}
+
+	if head.data == value {
+		return head.next
+	}
+	current := head
+
+	for current.next != nil {
+		if current.next.data == value {
+			current.next = current.next.next
+			break
+		}
+		current = current.next
+	}
 	return head
 }
 
@@ -41,6 +64,45 @@ func search(head *Node, value int) bool {
 	return false
 }
 
+func searchPosition(head *Node, value int) int {
+	index := 0
+	current := head
+
+	for current != nil {
+		if current.data == value {
+			return index
+		}
+		current = current.next
+		index++
+	}
+	return -1
+}
+
+func removeDuplicatesUnsorted(head *Node) *Node {
+
+	if head == nil {
+		return nil
+	}
+
+	seen := make(map[int]bool)
+	current := head
+	var prev *Node
+
+	for current != nil {
+
+		if seen[current.data] {
+			prev.next = current.next
+		} else {
+			seen[current.data] = true
+			prev = current
+		}
+
+		current = current.next
+	}
+
+	return head
+}
+
 func main() {
 
 	d1 := &Node{data: 10}
@@ -51,10 +113,14 @@ func main() {
 	d1.next = d2
 	d2.next = d3
 	d3.next = d4
-
 	head := d1
 	printList(head)
 	head1 := search(head, 30)
 	fmt.Println(head1)
-
+	head3 := searchPosition(head, 30)
+	fmt.Println(head3)
+	head = deleteByValue(head, 30)
+	head = insert(head, 34)
+	// head = delete(head)
+	printList(head)
 }
