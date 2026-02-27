@@ -15,6 +15,12 @@ func printList(head *Node) {
 		current = current.next
 	}
 }
+
+func insert(head *Node, value int) *Node {
+	newNode := &Node{data: value}
+	newNode.next = head
+	return newNode
+}
 func main() {
 
 	d1 := &Node{data: 10}
@@ -27,5 +33,7 @@ func main() {
 	d3.next = d4
 
 	head := d1
+	printList(head)
+	head = insert(head, 88)
 	printList(head)
 }
