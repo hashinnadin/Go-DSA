@@ -21,6 +21,26 @@ func insert(head *Node, value int) *Node {
 	newNode.next = head
 	return newNode
 }
+
+func delete(head *Node) *Node {
+	head = head.next
+	return head
+}
+
+func search(head *Node, value int) bool {
+
+	current := head
+
+	for current != nil {
+
+		if current.data == value {
+			return true
+		}
+		current = current.next
+	}
+	return false
+}
+
 func main() {
 
 	d1 := &Node{data: 10}
@@ -34,6 +54,7 @@ func main() {
 
 	head := d1
 	printList(head)
-	head = insert(head, 88)
-	printList(head)
+	head1 := search(head, 30)
+	fmt.Println(head1)
+
 }
