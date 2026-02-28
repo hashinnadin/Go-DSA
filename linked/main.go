@@ -30,13 +30,11 @@ func delete(head *Node) *Node {
 }
 
 func deleteByValue(head *Node, value int) *Node {
-
 	if head == nil {
 		return nil
 	}
-
 	if head.data == value {
-		return head.next
+		head = head.next
 	}
 	current := head
 
@@ -119,7 +117,7 @@ func main() {
 	fmt.Println(head1)
 	head3 := searchPosition(head, 30)
 	fmt.Println(head3)
-	head = deleteByValue(head, 30)
+	head = deleteByValue(head, 40)
 	head = insert(head, 34)
 	// head = delete(head)
 	printList(head)
