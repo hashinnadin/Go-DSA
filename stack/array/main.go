@@ -21,11 +21,19 @@ func (s *Stack) Pop() int {
 	return element
 
 }
+
+func (s *Stack) Peek() int {
+	return s.items[len(s.items)-1]
+}
+
 func main() {
 
 	var S Stack
 
 	S.Push(10)
+	S.Push(20)
+	S.Push(30)
+	S.Pop()
 	fmt.Println("Hyy", S)
-	fmt.Println(S.Pop())
+	fmt.Println(S.Peek())
 }
