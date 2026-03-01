@@ -119,6 +119,6 @@ func main() {
 	fmt.Println(head3)
 	head = deleteByValue(head, 40)
 	head = insert(head, 34)
-	// head = delete(head)
+	head = delete(head)
 	printList(head)
 }
