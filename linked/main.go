@@ -60,16 +60,14 @@
 // }
 
 // func searchPosition(head *Node, value int) int {
-// 	index := 0
-// 	current := head
-
-// 	for current.next != nil {
-
-// 		if current.data == value {
+// 	index:=0
+// 	current:=head
+// 	for current.next !=nil{
+// 		if current.data==value {
 // 			return index
 // 		}
-// 		current = current.next
-// 		index++
+// 		index ++
+// 		current=current.next
 // 	}
 // 	return -1
 // }
@@ -154,13 +152,19 @@ func insert(head *Node, value int) *Node {
 func insertTail(head *Node, value int) *Node {
 	newNode := &Node{data: value}
 
+	if head == nil {
+		newNode.next = head
+		return newNode
+	}
 	current := head
 	for current.next != nil {
 		current = current.next
 	}
 	current.next = newNode
 	return head
+
 }
+
 func AddvalueByposition(head *Node, value int, pos int) *Node {
 	newNode := &Node{data: value}
 
@@ -185,7 +189,6 @@ func main() {
 	n3 := &Node{data: 3}
 	n4 := &Node{data: 4}
 	n5 := &Node{data: 5}
-
 	n1.next = n2
 	n2.next = n3
 	n3.next = n4
@@ -193,7 +196,7 @@ func main() {
 	head := n1
 	printNode(head)
 	head = insert(head, 20)
-	head = insertTail(head, 80)
+	head = insertTail(head, 99)
 	head = AddvalueByposition(head, 88, 3)
 	printNode(head)
 }
