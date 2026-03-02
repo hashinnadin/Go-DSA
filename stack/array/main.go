@@ -19,7 +19,6 @@ func (s *Stack) Pop() int {
 	element := s.items[topindex]
 	s.items = s.items[:topindex]
 	return element
-
 }
 
 func (s *Stack) Peek() int {

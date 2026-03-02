@@ -30,30 +30,27 @@ func delete(head *Node) *Node {
 }
 
 func deleteByValue(head *Node, value int) *Node {
-	if head == nil {
-		return nil
-	}
-	if head.data == value {
-		head = head.next
-	}
-	current := head
 
-	for current.next != nil {
-		if current.next.data == value {
-			current.next = current.next.next
+	if head.data == value {
+		return head.next
+	}
+	curent := head
+
+	for curent.next != nil {
+		if curent.next.data == value {
+			curent.next = curent.next.next
 			break
 		}
-		current = current.next
+		curent = curent.next
 	}
 	return head
+
 }
 
 func search(head *Node, value int) bool {
 
 	current := head
-
-	for current != nil {
-
+	for current.next != nil {
 		if current.data == value {
 			return true
 		}
@@ -66,7 +63,8 @@ func searchPosition(head *Node, value int) int {
 	index := 0
 	current := head
 
-	for current != nil {
+	for current.next != nil {
+
 		if current.data == value {
 			return index
 		}
@@ -118,7 +116,7 @@ func main() {
 	head3 := searchPosition(head, 30)
 	fmt.Println(head3)
 	head = deleteByValue(head, 40)
-	head = insert(head, 34)
-	head = delete(head)
+	// head = insert(head, 34)
+	// head = delete(head)
 	printList(head)
 }
