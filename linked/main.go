@@ -123,11 +123,61 @@
 
 package main
 
+import (
+	"fmt"
+)
+
 type Node struct {
 	data int
 	next *Node
 }
 
+func printNode(head *Node) {
+	current := head
+	for current != nil {
+		fmt.Println(current.data)
+		current = current.next
+	}
+}
+func insert(head *Node, value int) *Node {
+	newNode := &Node{data: value}
+	if head == nil {
+		head = newNode
+	}
+	if head != nil {
+		newNode.next = head
+		head = newNode
+	}
+	return head
+}
+
+func insertTail(head *Node, value int) *Node {
+	newNode := &Node{data: value}
+
+	current := head
+	for current.next != nil {
+		current = current.next
+	}
+	current.next = newNode
+	return head
+}
+func AddvalueByposition(head *Node, value int, pos int) *Node {
+	newNode := &Node{data: value}
+
+	if pos == 0 {
+		newNode.next = head
+		return newNode
+	}
+	current := head
+	for i := 0; current != nil && i < pos-1; i++ {
+		current = current.next
+	}
+	if current != nil {
+		newNode.next = current.next
+		current.next = newNode
+	}
+	return head
+}
 func main() {
 
 	n1 := &Node{data: 1}
@@ -136,4 +186,14 @@ func main() {
 	n4 := &Node{data: 4}
 	n5 := &Node{data: 5}
 
+	n1.next = n2
+	n2.next = n3
+	n3.next = n4
+	n4.next = n5
+	head := n1
+	printNode(head)
+	head = insert(head, 20)
+	head = insertTail(head, 80)
+	head = AddvalueByposition(head, 88, 3)
+	printNode(head)
 }
