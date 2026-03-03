@@ -54,47 +54,79 @@
 // 	fmt.Println("Peek :", S.Peek())
 // }
 
+// package main
+
+// import "fmt"
+
+// type Node struct {
+// 	data int
+// 	next *Node
+// }
+
+// type Queue struct {
+// 	front *Node
+// 	rear  *Node
+// }
+
+// func (q *Queue) print() {
+// 	cuurent := q.front
+// 	for cuurent != nil {
+// 		fmt.Println(cuurent.data)
+// 		cuurent = cuurent.next
+// 	}
+// }
+// func (q *Queue) Enqueue(value int) {
+// 	newNode := &Node{data: value}
+
+// 	if q.rear == nil {
+// 		q.front = newNode
+// 		q.rear = newNode
+// 		return
+// 	}
+// 	q.rear.next = newNode
+// 	q.rear = newNode
+// }
+
+// func (q *Queue) Dequeue() {
+// 	if q.front == nil {
+// 		fmt.Println("Underflow")
+// 	}
+// 	q.front = q.front.next
+// }
+
+// func (q *Queue) Peek() int {
+// 	return q.front.data
+// }
+// func main() {
+// 	Q := Queue{}
+// 	Q.Enqueue(10)
+// 	Q.Enqueue(20)
+// 	Q.Enqueue(30)
+// 	Q.Dequeue()
+// 	fmt.Println("First value :", Q.Peek())
+// 	Q.print()
+// }
+
 package main
 
 import "fmt"
 
-type Node struct {
-	data int
-	next *Node
+func Sum(value, value2 *int) int {
+	return *value + *value2
 }
-
-type Queue struct {
-	front *Node
-	rear  *Node
+func change(x *int) {
+	*x = 100
+	fmt.Println(*x)
 }
-
-func (q *Queue) print() {
-	cuurent := q.front
-	for cuurent != nil {
-		fmt.Println(cuurent.data)
-		cuurent = cuurent.next
-	}
-}
-func (q *Queue) Enqueue(value int) {
-	newNode := &Node{data: value}
-
-	if q.rear == nil {
-		q.front = newNode
-		q.rear = newNode
-		return
-	}
-	q.rear.next = newNode
-	q.rear = newNode
-}
-
-func ()  {
-	
-}
-
 func main() {
-	Q := Queue{}
-	Q.Enqueue(10)
-	Q.Enqueue(20)
-	Q.Enqueue(30)
-	Q.print()
+
+	a := 10
+	b := 20
+
+	result := Sum(&a, &b)
+	fmt.Println(result)
+
+	z := 20
+	change(&z)
+
 }
