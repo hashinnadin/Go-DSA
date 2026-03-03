@@ -72,12 +72,12 @@ func (S *Stack) Push(value int) {
 	newNode.next = S.top
 	S.top = newNode
 }
-
 func (S *Stack) Pop() int {
 	value := S.top.data
 	S.top = S.top.next
 	return value
 }
+
 func printList(head *Node) {
 	current := head
 	for current != nil {

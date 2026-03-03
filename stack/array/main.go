@@ -9,7 +9,6 @@ type Stack struct {
 func (S *Stack) Push(value int) {
 	S.items = append(S.items, value)
 }
-
 func (s *Stack) Pop() int {
 	if len(s.items) == 0 {
 		fmt.Println("Stack is Empty")
