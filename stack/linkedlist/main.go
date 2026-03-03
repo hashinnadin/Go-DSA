@@ -107,26 +107,58 @@
 // 	Q.print()
 // }
 
+// package main
+
+// import "fmt"
+
+// func Sum(value, value2 *int) int {
+// 	return *value + *value2
+// }
+// func change(x *int) {
+// 	*x = 100
+// 	fmt.Println(*x)
+// }
+// func main() {
+
+// 	a := 10
+// 	b := 20
+
+// 	result := Sum(&a, &b)
+// 	fmt.Println(result)
+
+// 	z := 20
+// 	change(&z)
+
+// }
+
 package main
 
 import "fmt"
 
-func Sum(value, value2 *int) int {
-	return *value + *value2
+type Stack struct {
+	items []int
 }
-func change(x *int) {
-	*x = 100
-	fmt.Println(*x)
+
+func (s *Stack) Push(value int) {
+	s.items = append(s.items, value)
 }
+func (s *Stack) print() {
+	fmt.Println(s.items)
+}
+
+func (s *Stack) Pop() (int, bool) {
+	if len(s.items) == 0 {
+		return 0, false
+	}
+	topindex := len(s.items) - 1
+	element := s.items[topindex]
+	s.items = s.items[:topindex]
+	return element, true
+}
+
 func main() {
+	var S Stack
 
-	a := 10
-	b := 20
-
-	result := Sum(&a, &b)
-	fmt.Println(result)
-
-	z := 20
-	change(&z)
-
+	S.Push(10)
+	S.print()
 }
