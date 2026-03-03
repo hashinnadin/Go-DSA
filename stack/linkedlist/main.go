@@ -63,55 +63,38 @@ type Node struct {
 	next *Node
 }
 
-type Stack struct {
-	top *Node
+type Queue struct {
+	front *Node
+	rear  *Node
 }
 
-func (S *Stack) Push(value int) {
-	newNode := &Node{data: value}
-	newNode.next = S.top
-	S.top = newNode
-}
-func (S *Stack) Pop() int {
-	value := S.top.data
-	S.top = S.top.next
-	return value
-}
-
-func printList(head *Node) {
-	current := head
-	for current != nil {
-		fmt.Println(current.data)
-		current = current.next
+func (q *Queue) print() {
+	cuurent := q.front
+	for cuurent != nil {
+		fmt.Println(cuurent.data)
+		cuurent = cuurent.next
 	}
 }
+func (q *Queue) Enqueue(value int) {
+	newNode := &Node{data: value}
 
-func deleteHead(head *Node) *Node {
-	if head != nil {
-		head = head.next
+	if q.rear == nil {
+		q.front = newNode
+		q.rear = newNode
+		return
 	}
-	return head
+	q.rear.next = newNode
+	q.rear = newNode
 }
 
-func insertHead(head *Node, value int) *Node {
-	newNode := &Node{data: value}
-	newNode.next = head
-	return newNode
+func ()  {
+	
 }
 
 func main() {
-
-	head1 := &Node{data: 10}
-	head2 := &Node{data: 20}
-	head3 := &Node{data: 30}
-	head4 := &Node{data: 40}
-
-	head1.next = head2
-	head2.next = head3
-	head3.next = head4
-
-	head := head1
-	head = insertHead(head, 99)
-	head = deleteHead(head)
-	printList(head)
+	Q := Queue{}
+	Q.Enqueue(10)
+	Q.Enqueue(20)
+	Q.Enqueue(30)
+	Q.print()
 }

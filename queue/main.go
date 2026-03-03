@@ -111,9 +111,19 @@ func (q *Queue) Enqueue(value int) {
 		return
 	}
 	q.rear.next = newNode
-	newNode = q.rear
+	q.rear = newNode
 }
 
+// func (q *Queue) Dequeue() {
+// 	if q.front == nil {
+// 		fmt.Println("UnderFlow")
+// 	}
+// 	q.front = q.front.next
+// }
+
+func (q *Queue) Dequeue() {
+
+}
 func (Q *Node) Print() {
 	current := Q
 	for current != nil {
@@ -123,8 +133,14 @@ func (Q *Node) Print() {
 }
 func main() {
 
-	queue := Queue{}
+	// queue := Queue{}
+	var queue Queue
 
 	queue.Enqueue(20)
+	queue.Enqueue(30)
+	queue.Enqueue(40)
+	queue.Enqueue(50)
+	queue.Dequeue()
+
 	queue.front.Print()
 }
