@@ -1,58 +1,59 @@
-// package main
+package main
 
-// import "fmt"
+import "fmt"
 
-// type Node struct {
-// 	data int
-// 	next *Node
-// }
+type Node struct {
+	data int
+	next *Node
+}
 
-// type Stack struct {
-// 	top *Node
-// }
+type Stack struct {
+	top *Node
+}
 
-// func (s *Stack) Push(value int) {
-// 	newNode := &Node{data: value}
-// 	newNode.next = s.top
-// 	s.top = newNode
-// }
-// func (s *Stack) Pop() int {
-// 	if s.top == nil {
-// 		fmt.Println("")
-// 	}
-// 	value := s.top.data
-// 	s.top = s.top.next
-// 	return value
-// }
+func (s *Stack) Push(value int) {
+	newNode := &Node{data: value}
+	newNode.next = s.top
+	s.top = newNode
+}
 
-// func (s Stack) Peek() int {
-// 	if s.top == nil {
-// 		fmt.Println("No Value in stack")
-// 		return -1
-// 	}
-// 	return s.top.data
-// }
+func (s *Stack) Pop() int {
+	if s.top == nil {
+		fmt.Println("")
+	}
+	value := s.top.data
+	s.top = s.top.next
+	return value
+}
 
-// func (s *Stack) Print() {
-// 	current := s.top
+func (s Stack) Peek() int {
+	if s.top == nil {
+		fmt.Println("No Value in stack")
+		return -1
+	}
+	return s.top.data
+}
 
-// 	for current != nil {
-// 		fmt.Println(current.data)
-// 		current = current.next
-// 	}
-// }
-// func main() {
-// 	S := Stack{}
-// 	S.Push(10)
-// 	S.Push(20)
-// 	S.Push(30)
-// 	S.Push(40)
-// 	S.Print()
-// 	fmt.Println("------------")
-// 	S.Pop()
-// 	S.Print()
-// 	fmt.Println("Peek :", S.Peek())
-// }
+func (s *Stack) Print() {
+	current := s.top
+
+	for current != nil {
+		fmt.Println(current.data)
+		current = current.next
+	}
+}
+func main() {
+	S := Stack{}
+	S.Push(10)
+	S.Push(20)
+	S.Push(30)
+	S.Push(40)
+	S.Print()
+	fmt.Println("------------")
+	S.Pop()
+	S.Print()
+	fmt.Println("Peek :", S.Peek())
+}
 
 // package main
 
@@ -131,34 +132,34 @@
 
 // }
 
-package main
+// package main
 
-import "fmt"
+// import "fmt"
 
-type Stack struct {
-	items []int
-}
+// type Stack struct {
+// 	items []int
+// }
 
-func (s *Stack) Push(value int) {
-	s.items = append(s.items, value)
-}
-func (s *Stack) print() {
-	fmt.Println(s.items)
-}
+// func (s *Stack) Push(value int) {
+// 	s.items = append(s.items, value)
+// }
+// func (s *Stack) print() {
+// 	fmt.Println(s.items)
+// }
 
-func (s *Stack) Pop() (int, bool) {
-	if len(s.items) == 0 {
-		return 0, false
-	}
-	topindex := len(s.items) - 1
-	element := s.items[topindex]
-	s.items = s.items[:topindex]
-	return element, true
-}
+// func (s *Stack) Pop() (int, bool) {
+// 	if len(s.items) == 0 {
+// 		return 0, false
+// 	}
+// 	topindex := len(s.items) - 1
+// 	element := s.items[topindex]
+// 	s.items = s.items[:topindex]
+// 	return element, true
+// }
 
-func main() {
-	var S Stack
+// func main() {
+// 	var S Stack
 
-	S.Push(10)
-	S.print()
-}
+// 	S.Push(10)
+// 	S.print()
+// }
