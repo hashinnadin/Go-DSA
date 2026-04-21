@@ -118,150 +118,150 @@
 // 	printList(head)
 // }
 
-package main
-
-import (
-	"fmt"
-)
-
-type Node struct {
-	data int
-	next *Node
-}
-
-func printNode(head *Node) {
-	current := head
-	for current != nil {
-		fmt.Println(current.data)
-		current = current.next
-	}
-}
-func insert(head *Node, value int) *Node {
-	newNode := &Node{data: value}
-	if head == nil {
-		head = newNode
-	}
-	if head != nil {
-		newNode.next = head
-		head = newNode
-	}
-	return head
-}
-
-func insertTail(head *Node, value int) *Node {
-	newNode := &Node{data: value}
-
-	if head == nil {
-		newNode.next = head
-		return newNode
-	}
-	current := head
-	for current.next != nil {
-		current = current.next
-	}
-	current.next = newNode
-	return head
-
-}
-
-func AddvalueByposition(head *Node, value int, pos int) *Node {
-	newNode := &Node{data: value}
-
-	if pos == 0 {
-		newNode.next = head
-		return newNode
-	}
-	current := head
-	for i := 0; current != nil && i < pos-1; i++ {
-		current = current.next
-	}
-	if current != nil {
-		newNode.next = current.next
-		current.next = newNode
-	}
-	return head
-}
-func main() {
-
-	n1 := &Node{data: 1}
-	n2 := &Node{data: 2}
-	n3 := &Node{data: 3}
-	n4 := &Node{data: 4}
-	n5 := &Node{data: 5}
-	n1.next = n2
-	n2.next = n3
-	n3.next = n4
-	n4.next = n5
-	head := n1
-	printNode(head)
-	head = insert(head, 20)
-	head = insertTail(head, 99)
-	head = AddvalueByposition(head, 88, 3)
-	printNode(head)
-}
-
-// ------DOUBLE LINKED LIST-------//
-
 // package main
 
-// import "fmt"
+// import (
+// 	"fmt"
+// )
 
 // type Node struct {
 // 	data int
-// 	prev *Node
 // 	next *Node
 // }
 
-// func insertHead(head *Node, value int) *Node {
-// 	newNode := &Node{data: value}
-// 	if head != nil {
-// 		head.prev = newNode
-// 		newNode.next = head
-
-// 	}
-// 	return newNode
-// }
-
-// func insertTail(head *Node, value int) *Node {
-// 	newNode := &Node{data: value}
-// 	current := head
-// 	for current.next != nil {
-// 		current = current.next
-// 	}
-// 	current.next = newNode
-// 	newNode.prev = current
-// 	return head
-// }
-// func print(head *Node) {
+// func printNode(head *Node) {
 // 	current := head
 // 	for current != nil {
 // 		fmt.Println(current.data)
 // 		current = current.next
 // 	}
 // }
-
-// func backForward(head *Node) {
-// 	curent := head
-
-// 	for curent.next != nil {
-// 		curent = curent.next
+// func insert(head *Node, value int) *Node {
+// 	newNode := &Node{data: value}
+// 	if head == nil {
+// 		head = newNode
 // 	}
-// 	for curent != nil {
-// 		fmt.Println(curent.data)
-// 		curent = curent.prev
+// 	if head != nil {
+// 		newNode.next = head
+// 		head = newNode
 // 	}
+// 	return head
+// }
+
+// func insertTail(head *Node, value int) *Node {
+// 	newNode := &Node{data: value}
+
+// 	if head == nil {
+// 		newNode.next = head
+// 		return newNode
+// 	}
+// 	current := head
+// 	for current.next != nil {
+// 		current = current.next
+// 	}
+// 	current.next = newNode
+// 	return head
+
+// }
+
+// func AddvalueByposition(head *Node, value int, pos int) *Node {
+// 	newNode := &Node{data: value}
+
+// 	if pos == 0 {
+// 		newNode.next = head
+// 		return newNode
+// 	}
+// 	current := head
+// 	for i := 0; current != nil && i < pos-1; i++ {
+// 		current = current.next
+// 	}
+// 	if current != nil {
+// 		newNode.next = current.next
+// 		current.next = newNode
+// 	}
+// 	return head
 // }
 // func main() {
-// 	head := &Node{
-// 		data: 5,
-// 	}
-// 	print(head)
-// 	fmt.Println("\n")
-// 	head = insertHead(head, 10)
-// 	head = insertTail(head, 20)
-// 	print(head)
-// 	backForward(head)
+
+// 	n1 := &Node{data: 1}
+// 	n2 := &Node{data: 2}
+// 	n3 := &Node{data: 3}
+// 	n4 := &Node{data: 4}
+// 	n5 := &Node{data: 5}
+// 	n1.next = n2
+// 	n2.next = n3
+// 	n3.next = n4
+// 	n4.next = n5
+// 	head := n1
+// 	printNode(head)
+// 	head = insert(head, 20)
+// 	head = insertTail(head, 99)
+// 	head = AddvalueByposition(head, 88, 3)
+// 	printNode(head)
 // }
+
+// ------DOUBLE LINKED LIST-------//
+
+package main
+
+import "fmt"
+
+type Node struct {
+	data int
+	prev *Node
+	next *Node
+}
+
+func insertHead(head *Node, value int) *Node {
+	newNode := &Node{data: value}
+	if head != nil {
+		head.prev = newNode
+		newNode.next = head
+
+	}
+	return newNode
+}
+
+func insertTail(head *Node, value int) *Node {
+	newNode := &Node{data: value}
+	current := head
+	for current.next != nil {
+		current = current.next
+	}
+	current.next = newNode
+	newNode.prev = current
+	return head
+}
+func print(head *Node) {
+	current := head
+	for current != nil {
+		fmt.Println(current.data)
+		current = current.next
+	}
+}
+
+func backForward(head *Node) {
+	curent := head
+
+	for curent.next != nil {
+		curent = curent.next
+	}
+	for curent != nil {
+		fmt.Println(curent.data)
+		curent = curent.prev
+	}
+}
+func main() {
+	head := &Node{
+		data: 5,
+	}
+	print(head)
+	fmt.Println("\n")
+	head = insertHead(head, 10)
+	head = insertTail(head, 20)
+	print(head)
+	backForward(head)
+}
 
 // // package main
 
