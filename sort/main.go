@@ -102,14 +102,66 @@
 // 	fmt.Println(Reverce("hashin"))
 // }
 
+// package main
+
+// import "fmt"
+
+// func main() {
+// 	// var ch rune = 'A'
+// 	var str string = "Hashin"
+// 	str2 := "you"
+
+// 	fmt.Printf("Hy %s How are %s", str, str2)
+// }
+
+// palandrome//
+
+// package main
+
+// import "fmt"
+
+// func CheckPalndrome(str string) bool {
+
+// 	left := 0
+// 	right := len(str) - 1
+
+// 	for left < right {
+// 		if str[left] != str[right] {
+// 			fmt.Println("its not plandrome", str)
+
+// 			return false
+// 		}
+// 		left++
+// 		right--
+// 	}
+// 	fmt.Println("its plandrome", str)
+// 	return true
+// }
+// func main() {
+// 	str := "madam"
+// 	fmt.Println(CheckPalndrome(str))
+// }
+
 package main
 
 import "fmt"
 
-func main() {
-	// var ch rune = 'A'
-	var str string = "Hashin"
-	str2 := "you"
+func Reverce(s string) string {
+	runes := []rune(s)
 
-	fmt.Printf("Hy %s How are %s", str, str2)
+	left := 0
+	right := len(runes) - 1
+
+	for left < right {
+		runes[left], runes[right] = runes[right], runes[left]
+		left++
+		right--
+	}
+	return string(runes)
+}
+
+func main() {
+
+	fmt.Println(Reverce("hashin"))
+
 }
