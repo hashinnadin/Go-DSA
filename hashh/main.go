@@ -36,6 +36,7 @@
 // 	for _, v := range arr {
 // 		check[v] = true
 // 	}
+
 // 	for v := range check {
 // 		fmt.Println(v)
 // 	}
@@ -122,6 +123,7 @@ func Duplicates(arr []int) bool {
 
 	for _, v := range arr {
 		if m[v] {
+			fmt.Println(v)
 			return true
 		}
 		m[v] = true

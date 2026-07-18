@@ -142,26 +142,121 @@
 // 	fmt.Println(CheckPalndrome(str))
 // }
 
+// package main
+
+// import "fmt"
+
+// func Reverce(s string) string {
+// 	runes := []rune(s)
+
+// 	left := 0
+// 	right := len(runes) - 1
+
+// 	for left < right {
+// 		runes[left], runes[right] = runes[right], runes[left]
+// 		left++
+// 		right--
+// 	}
+// 	return string(runes)
+// }
+
+// func main() {
+
+// 	fmt.Println(Reverce("hashin"))
+
+// }
+
+// Qiuck sort//
+
+// package main
+
+// import "fmt"
+
+// func QiuckSort(arr []int, low, high int) {
+
+// 	if low < high {
+
+// 		p := Partition(arr, low, high)
+
+// 		QiuckSort(arr, low, p-1)
+// 		QiuckSort(arr, p+1, high)
+// 	}
+// }
+
+//{10, 4, 8, 2, 6}
+//{4, 2, 6, 10, 8} =2
+//{2, 4, 6, 10, 8} =0
+
+// func Partition(arr []int, low, high int) int {
+
+// 	pivot := arr[high]
+// 	i := low - 1
+
+// 	for j := low; j < high; j++ {
+// 		if arr[j] < pivot {
+// 			i++
+// 			arr[i], arr[j] = arr[j], arr[i]
+// 		}
+// 	}
+// 	arr[i+1], arr[high] = arr[high], arr[i+1]
+// 	return i + 1
+
+// }
+
+// func main() {
+// 	arr := []int{10, 4, 8, 2, 6}
+// 	QiuckSort(arr, 0, len(arr)-1)
+// 	fmt.Println(arr)
+// }
+
+// merge sort
+
 package main
 
 import "fmt"
 
-func Reverce(s string) string {
-	runes := []rune(s)
+func mergeSort(arr []int) []int {
 
-	left := 0
-	right := len(runes) - 1
-
-	for left < right {
-		runes[left], runes[right] = runes[right], runes[left]
-		left++
-		right--
+	if len(arr) <= 1 {
+		return arr
 	}
-	return string(runes)
+
+	mid := len(arr) / 2
+
+	left := mergeSort(arr[:mid])
+
+	right := mergeSort(arr[mid:])
+
+	return merge(left, right)
+
+}
+
+func merge(left, right []int) []int {
+	result := make([]int, 0, len(left)+len(right))
+
+	i, j := 0, 0
+
+	for i < len(left) && j < len(right) {
+		if left[i] < right[j] {
+			result = append(result, left[i])
+			i++
+		} else {
+			result = append(result, right[j])
+			j++
+		}
+
+	}
+	result = append(result, left[i:]...)
+	result = append(result, right[j:]...)
+	return result
+
 }
 
 func main() {
 
-	fmt.Println(Reverce("hashin"))
+	arr := []int{10, 3, 7, 6, 20, 2, 9, 5}
+
+	fmt.Println("Before arr :", arr)
+	fmt.Println(mergeSort(arr))
 
 }
