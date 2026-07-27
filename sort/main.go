@@ -211,52 +211,112 @@
 
 // merge sort
 
+// package main
+
+// import "fmt"
+
+// func mergeSort(arr []int) []int {
+
+// 	if len(arr) <= 1 {
+// 		return arr
+// 	}
+
+// 	mid := len(arr) / 2
+
+// 	left := mergeSort(arr[:mid])
+
+// 	right := mergeSort(arr[mid:])
+
+// 	return merge(left, right)
+
+// }
+
+// func merge(left, right []int) []int {
+// 	result := make([]int, 0, len(left)+len(right))
+
+// 	i, j := 0, 0
+
+// 	for i < len(left) && j < len(right) {
+// 		if left[i] < right[j] {
+// 			result = append(result, left[i])
+// 			i++
+// 		} else {
+// 			result = append(result, right[j])
+// 			j++
+// 		}
+
+// 	}
+// 	result = append(result, left[i:]...)
+// 	result = append(result, right[j:]...)
+// 	return result
+
+// }
+
+// func main() {
+
+// 	arr := []int{10, 3, 7, 6, 20, 2, 9, 5}
+
+// 	fmt.Println("Before arr :", arr)
+// 	fmt.Println(mergeSort(arr))
+
+// }
+
+//heap sort//
+
 package main
 
 import "fmt"
 
-func mergeSort(arr []int) []int {
+func heapify(arr []int, n, i int) {
 
-	if len(arr) <= 1 {
-		return arr
+	largest := i
+	left := 2*i + 1
+	right := 2*i + 2
+
+	// check the left
+
+	if left < n && arr[left] > arr[largest] {
+		largest = left
 	}
 
-	mid := len(arr) / 2
+	// check the right
 
-	left := mergeSort(arr[:mid])
+	if right < n && arr[right] > arr[largest] {
+		largest = right
+	}
 
-	right := mergeSort(arr[mid:])
-
-	return merge(left, right)
+	// If largest is not the root, swap and continue heapifying
+	if largest != i {
+		arr[i], arr[largest] = arr[largest], arr[i]
+		heapify(arr, n, largest)
+	}
 
 }
 
-func merge(left, right []int) []int {
-	result := make([]int, 0, len(left)+len(right))
+func HeapSort(arr []int) {
+	n := len(arr)
 
-	i, j := 0, 0
-
-	for i < len(left) && j < len(right) {
-		if left[i] < right[j] {
-			result = append(result, left[i])
-			i++
-		} else {
-			result = append(result, right[j])
-			j++
-		}
-
+	// build max heap
+	for i := n/2 - 1; i >= 0; i-- {
+		heapify(arr, n, i)
 	}
-	result = append(result, left[i:]...)
-	result = append(result, right[j:]...)
-	return result
 
+	// Exctract element one by one
+
+	for i := n - 1; i > 0; i-- {
+		arr[0], arr[i] = arr[i], arr[0]
+
+		heapify(arr, i, 0)
+	}
 }
 
 func main() {
 
-	arr := []int{10, 3, 7, 6, 20, 2, 9, 5}
+	arr := []int{4, 10, 5, 7, 9, 10}
 
-	fmt.Println("Before arr :", arr)
-	fmt.Println(mergeSort(arr))
+	fmt.Println("Before Sorting:", arr)
 
+	HeapSort(arr)
+
+	fmt.Println("After Sorting :", arr)
 }
