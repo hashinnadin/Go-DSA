@@ -1,47 +1,81 @@
+// package main
+
+// import "fmt"
+
+// func heapify(arr []int, n, i int) {
+// 	largest := i
+// 	left := 2*i + 1
+// 	right := 2*i + 2
+
+// 	if left < n && arr[left] > arr[largest] {
+// 		largest = left
+// 	}
+
+// 	if right < n && arr[right] > arr[largest] {
+// 		largest = right
+// 	}
+
+// 	if largest != i {
+// 		arr[i], arr[largest] = arr[largest], arr[i]
+// 		heapify(arr, n, largest)
+// 	}
+// }
+
+// func HeapSort(arr []int) {
+
+// 	n := len(arr)
+// 	for i := n - 1; i >= 0; i-- {
+// 		heapify(arr, n, i)
+// 	}
+
+// 	for i := n - 1; i > 0; i-- {
+// 		arr[0], arr[i] = arr[i], arr[0]
+// 		heapify(arr, i, 0)
+// 	}
+// }
+
+// func main() {
+
+// 	arr := []int{10, 2, 4, 3, 8, 1}
+
+// 	HeapSort(arr)
+// 	fmt.Println(arr)
+// }
+
 package main
 
-func BubbbleSort(arr []int) {
-	n := len(arr)
+import "fmt"
 
-	for i := 0; i < n-1; i++ {
-		for j := 0; j < n-i-1; j++ {
-			if arr[j] > arr[j+1] {
-				arr[j], arr[j+1] = arr[j+1], arr[j]
-			}
-		}
-	}
+func AddEdge(graph map[string][]string, u, v string) {
+
+	graph[u] = append(graph[u], v)
+	graph[v] = append(graph[v], u)
 }
 
-func SelectionSort(arr []int) {
+func dfs(graph map[string][]string, node string, visited map[string]bool) {
 
-	n := len(arr)
+	visited[node] = true
+	fmt.Println(node)
 
-	for i := 0; i < n-1; i++ {
-		min := i
-
-		for j := i + 1; i < n; j++ {
-			if arr[j] > arr[min] {
-				min = j
-			}
+	for _, nieg := range graph[node] {
+		if !visited[nieg] {
+			dfs(graph, nieg, visited)
 		}
-		arr[i], arr[min] = arr[min], arr[i]
-
 	}
-}
 
-func Insert(arr []int) {
-	for i := 1; i < len(arr); i++ {
-		key := i
-		j := i - 1
-
-		for j >= 0 && arr[j] > key {
-			arr[j+1] = arr[j]
-			j--
-		}
-		arr[j+1] = key
-	}
 }
 
 func main() {
+
+	graph := make(map[string][]string)
+
+	visited := make(map[string]bool)
+
+	AddEdge(graph, "A", "B")
+	AddEdge(graph, "A", "C")
+	AddEdge(graph, "C", "D")
+	AddEdge(graph, "D", "E")
+
+	dfs(graph, "A", visited)
 
 }

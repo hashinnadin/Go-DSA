@@ -167,47 +167,39 @@
 // }
 
 // Qiuck sort//
+package main
 
-// package main
+import "fmt"
 
-// import "fmt"
+func QiuckSort(arr []int, low, hiegh int) {
 
-// func QiuckSort(arr []int, low, high int) {
+	if low < hiegh {
+		p := Parti(arr, low, hiegh)
+		QiuckSort(arr, low, p-1)
+		QiuckSort(arr, p+1, hiegh)
+	}
+}
 
-// 	if low < high {
+func Parti(arr []int, low, hiegh int) int {
+	pivot := arr[hiegh]
+	i := low - 1
 
-// 		p := Partition(arr, low, high)
+	for j := low; j < hiegh; j++ {
+		if arr[j] < pivot {
+			i++
+			arr[i], arr[j] = arr[j], arr[i]
+		}
+	}
+	arr[i+1], arr[hiegh] = arr[hiegh], arr[i+1]
+	return i + 1
+}
 
-// 		QiuckSort(arr, low, p-1)
-// 		QiuckSort(arr, p+1, high)
-// 	}
-// }
+func main() {
 
-//{10, 4, 8, 2, 6}
-//{4, 2, 6, 10, 8} =2
-//{2, 4, 6, 10, 8} =0
-
-// func Partition(arr []int, low, high int) int {
-
-// 	pivot := arr[high]
-// 	i := low - 1
-
-// 	for j := low; j < high; j++ {
-// 		if arr[j] < pivot {
-// 			i++
-// 			arr[i], arr[j] = arr[j], arr[i]
-// 		}
-// 	}
-// 	arr[i+1], arr[high] = arr[high], arr[i+1]
-// 	return i + 1
-
-// }
-
-// func main() {
-// 	arr := []int{10, 4, 8, 2, 6}
-// 	QiuckSort(arr, 0, len(arr)-1)
-// 	fmt.Println(arr)
-// }
+	arr := []int{10, 3, 2, 5, 7}
+	QiuckSort(arr, 0, len(arr)-1)
+	fmt.Println(arr)
+}
 
 // merge sort
 
@@ -246,7 +238,9 @@
 // 		}
 
 // 	}
+// 	fmt.Println(left[i:])
 // 	result = append(result, left[i:]...)
+
 // 	result = append(result, right[j:]...)
 // 	return result
 
@@ -254,7 +248,7 @@
 
 // func main() {
 
-// 	arr := []int{10, 3, 7, 6, 20, 2, 9, 5}
+// 	arr := []int{10, 3, 7, 6}
 
 // 	fmt.Println("Before arr :", arr)
 // 	fmt.Println(mergeSort(arr))
@@ -263,60 +257,60 @@
 
 //heap sort//
 
-package main
+// package main
 
-import "fmt"
+// import "fmt"
 
-func heapify(arr []int, n, i int) {
+// func heapify(arr []int, n, i int) {
 
-	largest := i
-	left := 2*i + 1
-	right := 2*i + 2
+// 	largest := i
+// 	left := 2*i + 1
+// 	right := 2*i + 2
 
-	// check the left
+// 	// check the left
 
-	if left < n && arr[left] > arr[largest] {
-		largest = left
-	}
+// 	if left < n && arr[left] > arr[largest] {
+// 		largest = left
+// 	}
 
-	// check the right
+// 	// check the right
 
-	if right < n && arr[right] > arr[largest] {
-		largest = right
-	}
+// 	if right < n && arr[right] > arr[largest] {
+// 		largest = right
+// 	}
 
-	// If largest is not the root, swap and continue heapifying
-	if largest != i {
-		arr[i], arr[largest] = arr[largest], arr[i]
-		heapify(arr, n, largest)
-	}
+// 	// If largest is not the root, swap and continue heapifying
+// 	if largest != i {
+// 		arr[i], arr[largest] = arr[largest], arr[i]
+// 		heapify(arr, n, largest)
+// 	}
 
-}
+// }
 
-func HeapSort(arr []int) {
-	n := len(arr)
+// func HeapSort(arr []int) {
+// 	n := len(arr)
 
-	// build max heap
-	for i := n/2 - 1; i >= 0; i-- {
-		heapify(arr, n, i)
-	}
+// 	// build max heap
+// 	for i := n/2 - 1; i >= 0; i-- {
+// 		heapify(arr, n, i)
+// 	}
 
-	// Exctract element one by one
+// 	// Exctract element one by one
 
-	for i := n - 1; i > 0; i-- {
-		arr[0], arr[i] = arr[i], arr[0]
+// 	for i := n - 1; i > 0; i-- {
+// 		arr[0], arr[i] = arr[i], arr[0]
 
-		heapify(arr, i, 0)
-	}
-}
+// 		heapify(arr, i, 0)
+// 	}
+// }
 
-func main() {
+// func main() {
 
-	arr := []int{4, 10, 5, 7, 9, 10}
+// 	arr := []int{4, 10, 5, 7, 9, 10}
 
-	fmt.Println("Before Sorting:", arr)
+// 	fmt.Println("Before Sorting:", arr)
 
-	HeapSort(arr)
+// 	HeapSort(arr)
 
-	fmt.Println("After Sorting :", arr)
-}
+// 	fmt.Println("After Sorting :", arr)
+// }
